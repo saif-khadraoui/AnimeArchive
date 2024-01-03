@@ -8,13 +8,16 @@ import { UploadButton } from '@/utils/uploadthing'
 import { OurFileRouter } from "../../api/uploadthing/core"
 import { useRouter } from 'next/navigation';
 
+type ImgHTMLAttributes<HTMLImageElement> = {
+  src?: string | undefined
+}
 
 function Profile() {
 
   const usernameContext = global?.window?.localStorage?.getItem("usernameContext") ? localStorage.getItem("usernameContext") : null
   const email = global?.window?.localStorage?.getItem("email") ? localStorage.getItem("email") : null
   const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
-  const profilePic = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : null
+  const profilePic = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : ImgHTMLAttributes<HTMLImageElement>
 
   const { setProfilePic } = useContext(UserContext)
 
@@ -107,11 +110,11 @@ function Profile() {
             <div className="right">
               <div className='username'>
                 <h4>Username</h4>
-                <input type="text" value={updatedUsername}/>
+                <input type="text"/>
               </div>
               <div className='email'>
                 <h4>Email</h4>
-                <input type="email" value={updatedEmail} onChange={((e) => setUpdatedEmail(e.target.value))}/>
+                <input type="email" onChange={((e) => setUpdatedEmail(e.target.value))}/>
               </div>
               <div className='update_profile'>
                 <button onClick={updateProfile}>Update</button>

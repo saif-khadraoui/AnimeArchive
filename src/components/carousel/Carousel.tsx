@@ -13,12 +13,21 @@ interface Anime{
 
 }
 
+interface current{
+    scrollWidth: number,
+    offsetWidth: number
+}
+
+interface carousel extends HTMLDivElement{
+    current: current
+}
+
 
 
 
 function Carousel( {animes} : {animes: Array<Anime>} ) {
     const [width, setWidth] = useState(0)
-    const carousel = useRef<React.Ref<HTMLDivElement>>()
+    const carousel = useRef<HTMLDivElement>(null)
     const router = useRouter()
 
     const fetchAnime = async (item: Anime) => {
@@ -28,7 +37,9 @@ function Carousel( {animes} : {animes: Array<Anime>} ) {
     }
 
     useEffect(() => {
-        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
+        if(carousel?.current){
+            setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
+        }
     }, [])
 
 
