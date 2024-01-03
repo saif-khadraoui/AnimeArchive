@@ -155,7 +155,7 @@ function Anime({params}: any) {
             <>
             {reviews.map((review, idx) => {
               return (
-                <Review username={review.Username} rating={review.Rating} content={review.Content} userPic={review.UserPic} />
+                <Review key={idx} username={review.Username} rating={review.Rating} content={review.Content} userPic={review.UserPic} />
               )
             })}
           </>
