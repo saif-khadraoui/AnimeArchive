@@ -13,8 +13,6 @@ function Home() {
   // setLoggedIn()
   // console.log(UserLoggedIn)
 
-  const { userLoggedIn } = useContext(UserContext)
-
   return (
     <div className='home'>
       <NavBar />

@@ -7,12 +7,12 @@ import { UserContext } from '@/(context)/UserContext';
 interface Props {
   animeId: number | undefined,
   animeTitle: string | undefined,
-  setAddReviewModal: ()=> void
+  setAddReviewModal: (bool: boolean)=> void
 };
 
 const AddReviewModal: React.FC<Props> = ({ animeId, animeTitle, setAddReviewModal }) => {
   const [guest, setGuest] = useState(true)
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState<string>(0)
   const [content, setContent] = useState("")
   const { email, userId } = useContext(UserContext)
   const userLoggedIn = localStorage.getItem("userLoggedIn")

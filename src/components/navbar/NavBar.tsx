@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useContext, FormEvent } from 'react'
+import React, { useState, useContext, FormEvent, KeyboardEvent } from 'react'
 import "./NavBar.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';

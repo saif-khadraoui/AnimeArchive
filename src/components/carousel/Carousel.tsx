@@ -14,25 +14,18 @@ interface Anime{
 }
 
 
+
+
 function Carousel( {animes} : {animes: Array<Anime>} ) {
     const [width, setWidth] = useState(0)
     const carousel = useRef<React.Ref<HTMLDivElement>>()
     const router = useRouter()
-    
-
-
 
     const fetchAnime = async (item: Anime) => {
         const data = await searchAnime(item.title)
         const id = data.data[0].mal_id
         router.push(`/anime/${id}`)
     }
-
-
-
-
-
-
 
     useEffect(() => {
         setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
