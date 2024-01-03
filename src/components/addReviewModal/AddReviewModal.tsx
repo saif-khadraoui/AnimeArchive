@@ -5,8 +5,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { UserContext } from '@/(context)/UserContext';
 
 interface Props {
-  animeId: number,
-  animeTitle: string,
+  animeId: number | undefined,
+  animeTitle: string | undefined,
   setAddReviewModal: ()=> void
 };
 

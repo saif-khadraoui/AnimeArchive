@@ -10,7 +10,8 @@ import AddReviewModal from '@/components/addReviewModal/AddReviewModal';
 import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 
-type trailerData = {
+
+interface trailer{
   youtube_id: string
 }
 
@@ -20,8 +21,18 @@ interface anime{
   synopsis: string,
   score: number,
   episodes: number,
-  trailer: Array<trailerData>
-  youtube_id: string
+  trailer: trailer,
+}
+
+interface review{
+  Username: string,
+  Rating: number,
+  Content: string,
+  UserPic: string
+}
+
+interface reviews{
+  review: review
 }
 
 
@@ -153,7 +164,7 @@ function Anime({params}: any) {
         <h4><strong>Reviews</strong></h4> 
         {reviews.length > 0 ? (
             <>
-            {reviews.map((review, idx) => {
+            {reviews.map((review: review, idx) => {
               return (
                 <Review key={idx} username={review.Username} rating={review.Rating} content={review.Content} userPic={review.UserPic} />
               )

@@ -15,7 +15,7 @@ function NavBar() {
   
   const router = useRouter()
 
-  const handleKeyDownSearch = (event) => {
+  const handleKeyDownSearch = (event: KeyboardEvent) => {
     if (event.key == "Enter"){
       router.push(`/animeSearch/${anime}`)
     }
@@ -56,7 +56,7 @@ function NavBar() {
         </div>
         <div className='right'>
             <div className='input'>
-                <input type='text' placeholder='search anime...' value={anime} onChange={((e) => setAnime(e.target.value))} onKeyDown={((event) => handleKeyDownSearch(event))} />
+                <input type='text' placeholder='search anime...' value={anime} onChange={((e) => setAnime(e.target.value))} onKeyDown={handleKeyDownSearch} />
                 <SearchIcon sx={{ color: "black", cursor: "pointer" }} onClick={fetchAnimes} />
             </div>
             {userLoggedIn == "true" ? (
