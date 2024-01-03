@@ -2,7 +2,21 @@ import React from 'react'
 import "./AnimeCard.scss"
 import { useRouter } from 'next/navigation'
 
-function AnimeCard({ anime }: Object) {
+interface imageTypes{
+  image_url: string
+}
+
+interface animeImages{
+  jpg: imageTypes
+}
+
+interface anime{
+  mal_id: string,
+  title: string,
+  images: animeImages
+}
+
+function AnimeCard({ anime }: { anime: anime }) {
     const router = useRouter()
 
     const getAnimeInfo = async () => {

@@ -29,7 +29,7 @@ function AnimeSearch({params}: any) {
                 <div className='search_result'>
                 {animes.map((anime, idx) => {
                     return (
-                        <AnimeCard anime={anime}/>
+                        <AnimeCard key={idx} anime={anime}/>
                     )
             })}
             </div>
