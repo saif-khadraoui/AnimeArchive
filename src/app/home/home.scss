@@ -1,0 +1,16 @@
+.home{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    .hero{
+        width: 90%;
+
+        #slider_section{
+            margin-top: 96px;
+        }
+    }
+}

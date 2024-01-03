@@ -1,0 +1,44 @@
+.anime{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .anime_content{
+        margin-top: 25px;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+
+        .information{
+            width: 60%;
+
+            .footer{
+                margin-top: 10px;
+                display: flex;
+                gap: 15px;
+            }
+        }
+    }
+
+    .trailer{
+        margin-top: 30px;
+    }
+
+    .user_interaction{
+        margin-top: 40px;
+        .reviews{
+            button{
+                margin-top: 50px;
+                width: 100px;
+                display: flex;
+                justify-content: center;
+                padding: 5px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
