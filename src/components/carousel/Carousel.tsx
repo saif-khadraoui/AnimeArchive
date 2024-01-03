@@ -4,7 +4,7 @@ import "./Carousel.scss"
 import { motion } from 'framer-motion'
 //import animes from "./images"
 import Image, { StaticImageData } from 'next/image';
-import { searchWiki, fetchPopularAnimes, searchAnime } from '@/server-actions/actions';
+import { searchAnime } from '@/server-actions/actions';
 import { useRouter } from 'next/navigation'
 
 interface Anime{

@@ -16,7 +16,7 @@ function Profile() {
   const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
   const profilePic = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : null
 
-  const { setUsernameContext, setEmail, setProfilePic } = useContext(UserContext)
+  const { setProfilePic } = useContext(UserContext)
 
   const [updatedUsername, setUpdatedUsername] = useState(usernameContext)
   const [updatedEmail, setUpdatedEmail] = useState(email)

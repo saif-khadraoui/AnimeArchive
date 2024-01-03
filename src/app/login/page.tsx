@@ -8,7 +8,8 @@ import { UserContext } from '@/(context)/UserContext'
 function LoginPage() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const {setUserLoggedIn, setUsernameContext, setEmail, setProfilePic, setUserId} = useContext(UserContext)
+
+    const { setUserLoggedIn, setUsernameContext, setEmail, setProfilePic, setUserId } = useContext(UserContext)
     const router = useRouter()
 
     const attemptLogin = async (e: FormEvent) => {

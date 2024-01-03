@@ -1,5 +1,5 @@
 'use client'
-import React, { FormEvent, useContext, useState } from 'react'
+import React, { FormEvent, ReactEventHandler, useContext, useState } from 'react'
 import "./AddReviewModal.scss"
 import CloseIcon from '@mui/icons-material/Close';
 import { UserContext } from '@/(context)/UserContext';
@@ -10,9 +10,13 @@ interface Props {
   setAddReviewModal: (bool: boolean)=> void
 };
 
+interface HandleNameChangeInterface {
+  target: HTMLInputElement;
+}
+
 const AddReviewModal: React.FC<Props> = ({ animeId, animeTitle, setAddReviewModal }) => {
   const [guest, setGuest] = useState(true)
-  const [rating, setRating] = useState<string>(0)
+  const [rating, setRating] = useState<number>(0)
   const [content, setContent] = useState("")
   const { email, userId } = useContext(UserContext)
   const userLoggedIn = localStorage.getItem("userLoggedIn")
@@ -49,6 +53,11 @@ const AddReviewModal: React.FC<Props> = ({ animeId, animeTitle, setAddReviewModa
 
   }
 
+  const updateRating = (e: any) => {
+    const val = e.target.value as number
+    setRating(val)
+  }
+
   return (
     <div className='add_review_modal'>
         <div className="top">
@@ -70,7 +79,7 @@ const AddReviewModal: React.FC<Props> = ({ animeId, animeTitle, setAddReviewModa
         </div>
         <div className="rating">
           <h5>Rating</h5>
-          <input type="range" min={0} max={10} value={rating} step={1} onChange={((e) => setRating(e.target.value))}/>
+          <input type="range" min={0} max={10} value={rating} step={1} onChange={updateRating}/>
           <p>{rating}</p>
         </div>
         <div className='content'>
