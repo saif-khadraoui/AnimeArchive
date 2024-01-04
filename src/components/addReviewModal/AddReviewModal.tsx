@@ -19,8 +19,8 @@ const AddReviewModal: React.FC<Props> = ({ animeId, animeTitle, setAddReviewModa
   const [rating, setRating] = useState<number>(0)
   const [content, setContent] = useState("")
   const { email, userId } = useContext(UserContext)
-  const userLoggedIn = localStorage.getItem("userLoggedIn")
-  const usernameContext = localStorage.getItem("usernameContext")
+  const userLoggedIn = global?.window?.localStorage?.getItem("userLoggedIn") ? localStorage.getItem("userLoggedIn") : null
+  const usernameContext = global?.window?.localStorage?.getItem("usernameContext") ? localStorage.getItem("usernameContext") : null
   const profilePic = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : null
 
   const addReview = async (e: FormEvent) => {

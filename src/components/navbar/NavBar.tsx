@@ -10,8 +10,8 @@ function NavBar() {
   const [anime, setAnime] = useState("")
   const { setUserLoggedIn, setEmail, setUsernameContext, setUserId } = useContext(UserContext)
 
-  const userLoggedIn = localStorage.getItem("userLoggedIn")
-  const userId = localStorage.getItem("userId")
+  const userLoggedIn = global?.window?.localStorage?.getItem("userLoggedIn") ? localStorage.getItem("userLoggedIn") : null
+  const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
   
   const router = useRouter()
 
