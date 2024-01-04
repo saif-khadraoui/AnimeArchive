@@ -14,7 +14,8 @@ function Profile() {
   const usernameContext = global?.window?.localStorage?.getItem("usernameContext") ? localStorage.getItem("usernameContext") : null
   const email = global?.window?.localStorage?.getItem("email") ? localStorage.getItem("email") : null
   const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
-  const profilePic: string  = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : null
+  // const profilePic: string  = global?.window?.localStorage?.getItem("profilePic") ? JSON.stringify(localStorage.getItem("profilePic") || "") : ""
+  const profilePic = localStorage?.getItem("profilePic")
   console.log(profilePic)
 
   const { setProfilePic } = useContext(UserContext)
@@ -92,7 +93,7 @@ function Profile() {
         <NavBar />
         <div className="profile_content">
             <div className="left">
-              <img src={profilePic} alt="" />
+              {profilePic && <img src={profilePic} alt="" />}
               {/* <EditIcon sx={{ cursor: "pointer" }}/> */}
               <UploadButton
                 endpoint="imageUploader"
