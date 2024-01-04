@@ -14,7 +14,8 @@ function Profile() {
   const usernameContext = global?.window?.localStorage?.getItem("usernameContext") ? localStorage.getItem("usernameContext") : null
   const email = global?.window?.localStorage?.getItem("email") ? localStorage.getItem("email") : null
   const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
-  const profilePic: string  = global?.window?.localStorage?.getItem("profilePic") ? JSON.parse(localStorage.getItem("profilePic") || "") : null
+  const profilePic: string  = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : null
+  console.log(profilePic)
 
   const { setProfilePic } = useContext(UserContext)
 
@@ -93,7 +94,7 @@ function Profile() {
             <div className="left">
               <img src={profilePic} alt="" />
               {/* <EditIcon sx={{ cursor: "pointer" }}/> */}
-              <UploadButton<OurFileRouter>
+              <UploadButton
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
                   console.log("Files: ", res);
