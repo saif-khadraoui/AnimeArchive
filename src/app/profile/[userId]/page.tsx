@@ -93,12 +93,12 @@ function Profile() {
         <NavBar />
         <div className="profile_content">
             <div className="left">
-              {/* {profilePic ? (
+              {profilePic ? (
                 <img src={profilePic} alt="" />
               ) : (
                 <p>Loading pfp...</p>
-              )} */}
-              <img src={profilePic} alt="" />
+              )}
+              {/* <img src={profilePic} alt="" /> */}
               <UploadButton
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
