@@ -8,16 +8,13 @@ import { UploadButton } from '@/utils/uploadthing'
 import { OurFileRouter } from "../../api/uploadthing/core"
 import { useRouter } from 'next/navigation';
 
-type ImgHTMLAttributes<HTMLImageElement> = {
-  src?: string | undefined
-}
 
 function Profile() {
 
   const usernameContext = global?.window?.localStorage?.getItem("usernameContext") ? localStorage.getItem("usernameContext") : null
   const email = global?.window?.localStorage?.getItem("email") ? localStorage.getItem("email") : null
   const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
-  const profilePic = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : ImgHTMLAttributes<HTMLImageElement>
+  const profilePic: string  = global?.window?.localStorage?.getItem("profilePic") ? JSON.parse(localStorage.getItem("profilePic") || "") : null
 
   const { setProfilePic } = useContext(UserContext)
 
@@ -76,6 +73,8 @@ function Profile() {
         if(data){
           console.log(data.data[0].profilePic)
           setProfilePic(data.data[0].profilePic)
+        } else{
+          setProfilePic("")
         }
       } catch(e){
         console.log(e)
