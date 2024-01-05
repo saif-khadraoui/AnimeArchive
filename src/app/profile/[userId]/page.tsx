@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { UploadButton } from '@/utils/uploadthing'
 import { OurFileRouter } from "../../api/uploadthing/core"
 import { useRouter } from 'next/navigation';
+import LoginPage from '@/app/login/page'
 
 
 function Profile() {
@@ -15,6 +16,7 @@ function Profile() {
   const email = global?.window?.localStorage?.getItem("email") ? localStorage.getItem("email") : null
   const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
   const profilePic = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : null
+  const userLoggedIn = global?.window?.localStorage?.getItem("userLoggedIn") ? localStorage.getItem("userLoggedIn") : null
   // const profilePic = localStorage?.getItem("profilePic")
   console.log(profilePic)
 
@@ -89,44 +91,51 @@ function Profile() {
 
 
   return (
-    <div className='profile'>
-        <NavBar />
-        <div className="profile_content">
-            <div className="left">
-              {profilePic ? (
-                <img src={profilePic} alt="" />
-              ) : (
-                <p>Loading pfp...</p>
-              )}
-              {/* <img src={profilePic} alt="" /> */}
-              <UploadButton
-                endpoint="imageUploader"
-                onClientUploadComplete={(res) => {
-                  console.log("Files: ", res);
-                  alert("Upload Completed");
-                  setUpdatedImagePath(res[0].url)
-                }} 
-                onUploadError={(error: Error) => {
-                  // Do something with the error.
-                  alert(`ERROR! ${error.message}`);
-                }}
-                />
+    <>
+    {userLoggedIn == "true" ? (
+      <div className='profile'>
+      <NavBar />
+      <div className="profile_content">
+          <div className="left">
+            {profilePic ? (
+              <img src={profilePic} alt="" />
+            ) : (
+              <p>Loading pfp...</p>
+            )}
+            {/* <img src={profilePic} alt="" /> */}
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                console.log("Files: ", res);
+                alert("Upload Completed");
+                setUpdatedImagePath(res[0].url)
+              }} 
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                alert(`ERROR! ${error.message}`);
+              }}
+              />
+          </div>
+          <div className="right">
+            <div className='username'>
+              <h4>Username</h4>
+              <input type="text"/>
             </div>
-            <div className="right">
-              <div className='username'>
-                <h4>Username</h4>
-                <input type="text"/>
-              </div>
-              <div className='email'>
-                <h4>Email</h4>
-                <input type="email" onChange={((e) => setUpdatedEmail(e.target.value))}/>
-              </div>
-              <div className='update_profile'>
-                <button onClick={updateProfile}>Update</button>
-              </div>
+            <div className='email'>
+              <h4>Email</h4>
+              <input type="email" onChange={((e) => setUpdatedEmail(e.target.value))}/>
             </div>
-        </div>
-    </div>
+            <div className='update_profile'>
+              <button onClick={updateProfile}>Update</button>
+            </div>
+          </div>
+      </div>
+  </div>
+    ) : (
+      <LoginPage />
+    )}
+      
+    </>
   )
 }
 

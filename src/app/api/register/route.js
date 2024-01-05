@@ -8,19 +8,31 @@ export const POST = async (res) => {
     // return new NextResponse("works")
     await connect();
 
-    const user = new UsersModel({
-        email: email,
-        username: username,
-        password: password,
-        profilePic: profilePic
-    })
+    const checkUserExists = await UsersModel.exists({ username: username })
+    const checkEmailExists = await UsersModel.exists({ email: email })
+    if(checkUserExists || checkEmailExists){
+        console.log("User exists")
+        return NextResponse.json({ message: true })
+    } else{
+        console.log("User doesn't exist")
+        const user = new UsersModel({
+            email: email,
+            username: username,
+            password: password,
+            profilePic: profilePic
+        })
 
-    try{
-        await user.save();
-        return new NextResponse("user added");
-    } catch(error){
-        console.log(error)
-        return new NextResponse("error")
+        try{
+            await user.save();
+            return NextResponse.json({message: false })
+        } catch(error){
+            console.log(error)
+            return new NextResponse("error")
+        }
+    
     }
+
+
+
 
 }

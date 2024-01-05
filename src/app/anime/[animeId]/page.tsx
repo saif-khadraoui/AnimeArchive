@@ -70,7 +70,7 @@ function Anime({params}: any) {
 
     loadReviews()
 
-  }, [])
+  }, [addReviewModal])
 
   const getRecommendations = async () => {
     const data = await generateRecommendations();

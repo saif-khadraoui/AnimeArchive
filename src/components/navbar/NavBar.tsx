@@ -8,7 +8,7 @@ import {UserContext} from "../../(context)/UserContext"
 
 function NavBar() {
   const [anime, setAnime] = useState("")
-  const { setUserLoggedIn, setEmail, setUsernameContext, setUserId } = useContext(UserContext)
+  const { setUserLoggedIn, setEmail, setUsernameContext, setUserId, setProfilePic } = useContext(UserContext)
 
   const userLoggedIn = global?.window?.localStorage?.getItem("userLoggedIn") ? localStorage.getItem("userLoggedIn") : null
   const userId = global?.window?.localStorage?.getItem("userId") ? localStorage.getItem("userId") : null
@@ -37,7 +37,8 @@ function NavBar() {
     setEmail("")
     setUserId("")
     setUsernameContext("")
-    router.push("/home")
+    setProfilePic("")
+    router.push("/")
   }
 
   

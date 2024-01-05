@@ -27,7 +27,13 @@ function RegisterPage() {
                 })
             })
 
-            if(res.ok){
+            const data = await res.json()
+
+            if(data.message){
+                console.log(data)
+                // console.log(data.checkUserExists.length)
+                alert("User already exists with the same email and/or username")
+            } else{
                 router.push("/login")
             }
 
