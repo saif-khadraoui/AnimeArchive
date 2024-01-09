@@ -18,13 +18,13 @@ function Profile() {
   const profilePic = global?.window?.localStorage?.getItem("profilePic") ? localStorage.getItem("profilePic") : null
   const userLoggedIn = global?.window?.localStorage?.getItem("userLoggedIn") ? localStorage.getItem("userLoggedIn") : null
   // const profilePic = localStorage?.getItem("profilePic")
-  console.log(profilePic)
+  // console.log(profilePic)
 
   const { setProfilePic } = useContext(UserContext)
 
-  const [updatedUsername, setUpdatedUsername] = useState(usernameContext)
-  const [updatedEmail, setUpdatedEmail] = useState(email)
-  const [updatedImagePath, setUpdatedImagePath] = useState("")
+  const [updatedUsername, setUpdatedUsername] = useState<string>("")
+  const [updatedEmail, setUpdatedEmail] = useState<string>("")
+  const [updatedImagePath, setUpdatedImagePath] = useState<string>("")
   const router = useRouter()
 
 
@@ -47,9 +47,16 @@ function Profile() {
             })
         })
 
-        if(res.ok){
-            alert("profile updated")
-            setProfilePic(updatedImagePath)
+        const data = await res.json()
+
+        if(data.message == "exists"){
+          console.log(data)
+          alert("user exists with that email and/or username")
+        } else{
+          console.log(data)
+          alert("profile updated")
+          // setProfilePic(updatedImagePath)
+          router.push(`/profile/${userId}`)
         }
 
     } catch(error: unknown){
@@ -119,11 +126,11 @@ function Profile() {
           <div className="right">
             <div className='username'>
               <h4>Username</h4>
-              <input type="text"/>
+              <input type="text" value={updatedUsername} onChange={((e) => setUpdatedUsername(e.target.value))} />
             </div>
             <div className='email'>
               <h4>Email</h4>
-              <input type="email" onChange={((e) => setUpdatedEmail(e.target.value))}/>
+              <input type="email" value={updatedEmail} onChange={((e) => setUpdatedEmail(e.target.value))}/>
             </div>
             <div className='update_profile'>
               <button onClick={updateProfile}>Update</button>

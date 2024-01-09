@@ -41,6 +41,8 @@ function LoginPage() {
                 
 
                 router.push("/home")
+            } else{
+                alert("Incorrect details, please try again")
             }
 
         } catch(err: unknown){
